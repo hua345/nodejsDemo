@@ -21,6 +21,8 @@
 |port |消息服务器端口|
 |sessionid|密钥种子|
 
+|Key类型|value info |exmaple|
+|-----|-----|------|
 |集合groupSet:(userid)|存储用户加入的群号|如groupSet:14006|
 |集合friendsSet:(userid)|存储好友ID|如friendsSet:14006|
 |列表unreadMsg:(userid)|存储用户二进制点对点未读消息|如unreadMsg:14006|
