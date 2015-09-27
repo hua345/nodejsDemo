@@ -1,8 +1,11 @@
-//https://www.npmjs.com/package/debug
+//https://github.com/visionmedia/debug
 
 var debug = require('debug')('http')
   , http = require('http')
   , name = 'My App';
+
+var a = debug('worker:a');
+var b = debug('worker:b');
 
  require('./worker');
 // fake app 
@@ -19,3 +22,9 @@ server.listen(3000, function(){
 });
 
 //DEBUG=http,worker node app.js
+
+//Save debug output to a file
+//DEBUG=http,worker DEBUG_FD=3 node app.js 3> whatever.log
+
+//the "+NNNms" will show you how much time was spent between calls.
+//  http GET / +726ms
