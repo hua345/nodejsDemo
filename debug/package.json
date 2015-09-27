@@ -1,10 +1,11 @@
 {
-  "name": "debug test",
+  "name": "debug-test",
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "node app.js"
   },
   "dependencies": {
+    "debug": "^2.2.0"
   }
 }
