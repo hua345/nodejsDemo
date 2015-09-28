@@ -1,0 +1,10 @@
+{
+  "name": "clusterDemo",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node master.js"
+  },
+  "dependencies": {
+  }
+}
