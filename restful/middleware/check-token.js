@@ -15,7 +15,7 @@ module.exports = function(req, res, next){
       else{
         //如果没有问题把解码信息保存到请求中
         req.api_user = decoded;
-        console.log(colors.green(req.api_user));
+        console.log(colors.green(JSON.stringify(req.api_user)));
         next();
       }
     })

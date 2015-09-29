@@ -8,8 +8,6 @@ router.post('/auth', function(req, res, next) {
 
   userModel.findOne({username: req.body.username},"username password",function(err, data){
     if (err) throw err;
-    console.log(JSON.stringify(req.body));
-
     console.log(data);
     if (!data) {
         res.json({ success: false, message: '认证失败，用户名找不到' });
@@ -74,17 +72,6 @@ router.get('/me', middleCheckToken, function(req, res) {
     });
 });
 
-function ensureAuthorized(req, res, next) {
-    var bearerToken;
-    var bearerHeader = req.headers["authorization"];
-    if (typeof bearerHeader !== 'undefined') {
-        var bearer = bearerHeader.split(" ");
-        bearerToken = bearer[1];
-        req.token = bearerToken;
-        next();
-    } else {
-        res.status(403).send({});
-    }
-}
+
 
 module.exports = router;
