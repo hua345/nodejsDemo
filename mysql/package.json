@@ -1,0 +1,11 @@
+{
+  "name": "expressDemo",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node app."
+  },
+  "dependencies": {
+    "mysql": "^2.9.0"
+  }
+}
