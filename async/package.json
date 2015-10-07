@@ -6,6 +6,10 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "async": "^1.4.2"
+    "async": "^1.4.2",
+    "bluebird": "^2.10.2",
+    "colors": "^1.1.2",
+    "promise": "^7.0.4",
+    "q": "^1.4.1"
   }
 }

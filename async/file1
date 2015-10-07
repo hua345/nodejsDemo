@@ -1,1 +1,2 @@
-Hello world
+function func(){console.log("Hello world");return "OK";}
+func();
