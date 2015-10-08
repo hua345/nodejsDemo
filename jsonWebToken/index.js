@@ -4,19 +4,19 @@ var bluebird = require("bluebird");
 var colors = require("colors");
 var readFileAsync = bluebird.promisify(fs.readFile);
 var events = require("events");
-var privateKey;
-var publicKey;
+
+var encrtoKey = {};
 
 var server = new events.EventEmitter();
 
 readFileAsync("rsa_private_key.pem","utf-8")
 .then(function(data){
-    privateKey = data;
+    encrtoKey.privateKey = data;
     console.log(data);
     return readFileAsync("rsa_public_key.pem", "utf-8");
 })
 .then(function(data){
-  publicKey = data;
+  encrtoKey.publicKey = data;
   console.log(data);
   console.log(colors.green("read file OK!"));
   server.emit("readOK");
@@ -35,12 +35,20 @@ server.on("readOK",function(){
     if(err) throw err;
     console.log(colors.green(decoded.hello));
   });
-  // sign with RSA SHA256
-  var tokenCert = jwt.sign({hello: 'world'}, privateKey, {algorithm: 'RS256'});
 
-  jwt.verify(tokenCert, publicKey, function(err, decoded) {
+
+  //RSA 公钥私钥需要指定SHA256算法
+  var tokenCert = jwt.sign({hello: 'world'}, encrtoKey.privateKey, {algorithm: 'RS256'});
+
+  jwt.verify(tokenCert, encrtoKey.publicKey, function(err, decoded) {
     if(err) throw err;
-    console.log(colors.green(decoded.hello)) // bar
+    console.log(colors.green(decoded.hello));
   });
 
+  var tokenTest = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJwaG9uZU51bWJlciI6IjE3ODc1MjY2OTcwIiwiaWF0IjoxNDQ0MzAwMDE2fQ.iWj_cGNdcOIEJgCNWmbrDwckmCUM2bN0A" +
+  "myNVgnxrA7rV3cpoXbAkguJyQYbZDlMpjRSHUDhXUKnyLuwuaKYO-wuEeEAcWl3gXArhbEqKdKbeVAXqzVWlreAfiId0rUqzxdEf3KQ38E1QFP6koVlko9hbzJ3unLf1pkFDEylK1U";
+  jwt.verify(tokenTest, encrtoKey.publicKey, function(err, decoded) {
+    if(err) throw err;
+    console.log(colors.green(decoded.phoneNumber));
+  });
 });
