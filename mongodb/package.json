@@ -6,6 +6,8 @@
     "start": "node app.js"
   },
   "dependencies": {
+    "colors": "^1.1.2",
+    "mongodb": "^2.0.45",
     "mongoose": "^4.1.8"
   }
 }

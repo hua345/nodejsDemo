@@ -1,0 +1,12 @@
+{
+  "name": "tddDemo",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node mocha.js"
+  },
+  "dependencies": {
+    "debug": "^2.2.0",
+    "mocha": "^2.3.3"
+  }
+}
